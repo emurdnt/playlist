@@ -1,0 +1,16 @@
+
+<mat-form-field>
+  <mat-label>Enter Artist</mat-label>
+  <input matInput placeholder="Ex. The Weeknd" value="" [formControl]="searchInput">
+</mat-form-field>
+<p>You have chosen {{albumChosen.trackName}} by {{albumChosen.artistName}}</p>
+<div class="results-container">
+  <ul *ngIf = "searchResults$ | async as searchResults;">
+    <li *ngFor="let result of searchResults; let i = index; let odd = odd">
+      <music-card [result]="result" (clickedItem) ="handleButtonClick($event)" />
+    </li>
+  </ul>
+  <div class="spinner" *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+</div>
